@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Página de Prueba</title>
+	</head>
+	<body>
+		<nav>
+			<ul>
+				<li><ahref="{{ path('index') }}">Inicio</a></li>
+				<li><ahref="{{ path('sym_index') }}">Proyecto</a></li>
+				<li><ahref="{{ path('sym_about') }}">Acerca de...</a></li>
+			</ul>
+		</nav>
+		<h1>Bienvenido a la página de prueba</h1>
+		<p>Esta es una vista renderizada usando Twig en Symfony.</p>
+		<p>{{ nombre }}</p>
+		<p>{{ saludo }}</p>
+
+		{% include 'parts/nombres.part.html.twig' with {'nombres':nombres} %}
+	</body>
+</html>
