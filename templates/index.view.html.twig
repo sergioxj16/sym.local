@@ -19,7 +19,6 @@
 				</div>
 			</div>
 		</div>
-
 		<div
 			id="index-body">
 			<!-- Pictures Navigation table -->
@@ -41,82 +40,80 @@
 				</table>
 				<hr>
 			</div>
-
 			<!-- Navigation Table Content -->
-				<!-- First Category pictures -->
-				<div id="category1" class="tab-pane active">
-					{% include 'imagen-index.part.html.twig' with {'imagenes':imagenes, 'idCategoria':1} %}
-				</div>
-				<!-- End of First category pictures -->
+			<!-- First Category pictures -->
+			<div id="category1" class="tab-pane active">
+				{% include 'imagen-index.part.html.twig' with {'imagenes':imagenes, 'idCategoria':1} %}
+			</div>
+			<!-- End of First category pictures -->
 
-				<!-- First Category pictures -->
-				{# <div id="category2" class="tab-pane active">
-					{% include 'imagen-index.part.html.twig' with {'imagenes':imagenes, 'idCategoria':2} %}
-				</div> #}
-				<!-- End of First category pictures -->
+			<!-- First Category pictures -->
+			{# <div id="category2" class="tab-pane active">
+																				{% include 'imagen-index.part.html.twig' with {'imagenes':imagenes, 'idCategoria':2} %}
+																			</div> #}
+			<!-- End of First category pictures -->
 
-				<!-- Third Category pictures -->
-				{# <div id="category3" class="tab-pane active">
-					{% include 'imagen-index.part.html.twig' with {'imagenes':imagenes, 'idCategoria':3} %}
-				</div> #}
-				<!-- End of Third category pictures -->
+			<!-- Third Category pictures -->
+			{# <div id="category3" class="tab-pane active">
+																				{% include 'imagen-index.part.html.twig' with {'imagenes':imagenes, 'idCategoria':3} %}
+																			</div> #}
+			<!-- End of Third category pictures -->
 
-				<nav class="text-center">
-					<ul class="pagination">
-						{% if idCategoria == 1 %}
-							<li class="active">
-							{% else %}
-								<li>
-								{% endif %}
-								<a href="#">1</a>
-							</li>
-						</ul>
-					</nav>
-				</div>
+				<nav class="text-center"> <ul class="pagination">
+					{% if idCategoria == 1 %}
+						<li class="active">
+						{% else %}
+							<li>
+							{% endif %}
+							<a href="#">1</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
 
-				<!-- Newsletter form -->
-				<div class="index-form text-center">
-					<h3>SUSCRIBE TO OUR NEWSLETTER
-					</h3>
-					<h5>Suscribe to receive our News and Gifts</h5>
-					<form class="form-horizontal">
-						<div class="form-group">
-							<div class="col-xs-12 col-sm-6 col-sm-push-3 col-md-4 col-md-push-4">
-								<input class="form-control" type="text" placeholder="Type here your email address">
-								<a href="" class="btn btn-lg sr-button">SUBSCRIBE</a>
-							</div>
+			<!-- Newsletter form -->
+			<div class="index-form text-center">
+				<h3>SUSCRIBE TO OUR NEWSLETTER
+				</h3>
+				<h5>Suscribe to receive our News and Gifts</h5>
+				<form class="form-horizontal">
+					<div class="form-group">
+						<div class="col-xs-12 col-sm-6 col-sm-push-3 col-md-4 col-md-push-4">
+							<input class="form-control" type="text" placeholder="Type here your email address">
+							<a href="" class="btn btn-lg sr-button">SUBSCRIBE</a>
 						</div>
-					</form>
-				</div>
-				<!-- End of Newsletter form -->
+					</div>
+				</form>
+			</div>
+			<!-- End of Newsletter form -->
 
-				<!-- Box within partners name and logo -->
-				<div class="last-box row">
-					<div class="col-xs-12 col-sm-4 col-sm-push-4 last-block">
-						<div class="partner-box text-center">
-							<p>
-								<i class="fa fa-map-marker fa-2x sr-icons"></i>
-								<span class="text-muted">35 North Drive, Adroukpape, PY 88105, Agoe Telessou</span>
-							</p>
-							<h4>Our Main Partners</h4>
-							<hr>
-							<div class="text-muted text-left">
-								<ul>
-									{% if asociadosAleatorios is not empty %}
-										{% for asociado in asociadosAleatorios %}
-											<li>
-												<img src="{{ asociado.url }}" alt="{{ asociado.descripcion }}">
-												<span>{{ asociado.nombre }}</span>
-											</li>
-										{% endfor %}
-									{% else %}
-										<li>No hay socios disponibles.</li>
-									{% endif %}
-								</ul>
+			<!-- Box within partners name and logo -->
+			<div class="last-box row">
+				<div class="col-xs-12 col-sm-4 col-sm-push-4 last-block">
+					<div class="partner-box text-center">
+						<p>
+							<i class="fa fa-map-marker fa-2x sr-icons"></i>
+							<span class="text-muted">35 North Drive, Adroukpape, PY 88105, Agoe Telessou</span>
+						</p>
+						<h4>Our Main Partners</h4>
+						<hr>
+						<div class="text-muted text-left">
+							<ul>
+								{# {% if asociadosAleatorios is not empty %}
+									{% for asociado in asociadosAleatorios %}
+										<li>
+											<img src="{{ asociado.url }}" alt="{{ asociado.descripcion }}">
+											<span>{{ asociado.nombre }}</span>
+										</li>
+									{% endfor %}
+								{% else %}
+									<li>No hay socios disponibles.</li>
+								{% endif %} #}
+							</ul>
 
-							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		{% endblock %}
+		</div>
+	{% endblock %}

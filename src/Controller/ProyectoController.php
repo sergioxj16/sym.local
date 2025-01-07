@@ -9,36 +9,27 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ProyectoController extends AbstractController
 {
-    #[Route('/', name: 'sym_index')]
-    public function index()
-    {   
-        for ($i = 1; $i <= 12; $i++) {
-            $imagenesHome[] = new Imagen(
-                "$i.jpg",
-                "descripción imagen $i",
-                1,
-                rand(1, 500),
-                rand(1, 700),
-                rand(100, 200)
-            );
-        }
-        
-        $asociados = [
-            new Asociado('Socio 1', 'log1.jpg', 'Descripción del Socio 1'),
-            new Asociado('Socio 2', 'log2.jpg', 'Descripción del Socio 2'),
-            new Asociado('Socio 3', 'log3.jpg', 'Descripción del Socio 3')
-        ];
+    // #[Route('/', name: 'sym_index')]
+    // public function index()
+    // {
+    //     $imagenesHome = [];
+    //     for ($i = 1; $i <= 12; $i++) {
+    //         $imagen = new Imagen();
+    //         $imagen->setNombre("$i.jpg")
+    //             ->setDescripcion("descripción imagen $i")
+    //             ->setCategoria(1)
+    //             ->setNumVisualizaciones(rand(1, 500))
+    //             ->setNumLikes(rand(1, 700))
+    //             ->setNumDownloads(rand(100, 200));
 
-        $idCategoria = 1;
-        $asociadosAleatorios = array_slice($asociados, 0, 3);
-
-        return $this->render('index.view.html.twig', [
-            'imagenes' => $imagenesHome,
-            'asociadosAleatorios' => $asociadosAleatorios,
-            'idCategoria' => $idCategoria
-        ]);
-    }
-
+    //         $imagenesHome[] = $imagen;
+    //     }
+    //     $idCategoria = 1;
+    //     return $this->render('index.view.html.twig', [
+    //         'imagenes' => $imagenesHome,
+    //         'idCategoria' => $idCategoria
+    //     ]);
+    // }
 
     #[Route('/about', name: 'sym_about')]
     public function about()
