@@ -5,6 +5,8 @@ use App\Entity\Imagen;
 use App\Entity\Asociado;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Response;
 
 
 class ProyectoController extends AbstractController
@@ -30,6 +32,17 @@ class ProyectoController extends AbstractController
     //         'idCategoria' => $idCategoria
     //     ]);
     // }
+
+    #[Route('/', name: 'sym_index')]
+    public function index(ManagerRegistry $doctrine): Response
+    {
+        $imagenesHome = $doctrine->getRepository(Imagen::class)->findAll();
+        $idCategoria = 1;
+        return $this->render('index.view.html.twig', [
+            'imagenes' => $imagenesHome,
+            'idCategoria' => $idCategoria
+        ]);
+    }
 
     #[Route('/about', name: 'sym_about')]
     public function about()
