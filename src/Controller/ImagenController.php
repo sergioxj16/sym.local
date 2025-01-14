@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Imagen;
-use App\Form\Imagen1Type;
+use App\Form\ImagenType;
 use App\Repository\ImagenRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -26,7 +26,7 @@ final class ImagenController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $imagen = new Imagen();
-        $form = $this->createForm(Imagen1Type::class, $imagen);
+        $form = $this->createForm(ImagenType::class, $imagen);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -53,7 +53,7 @@ final class ImagenController extends AbstractController
     #[Route('/{id}/edit', name: 'app_imagen_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Imagen $imagen, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(Imagen1Type::class, $imagen);
+        $form = $this->createForm(ImagenType::class, $imagen);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
