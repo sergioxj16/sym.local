@@ -15,7 +15,7 @@
                 <th>NumVisualizaciones</th>
                 <th>NumLikes</th>
                 <th>NumDownloads</th>
-                <th>actions</th>
+                <th>Contraseña</th>
             </tr>
         </thead>
         <tbody>
@@ -28,9 +28,10 @@
                 <td>{{ imagen.numVisualizaciones }}</td>
                 <td>{{ imagen.numLikes }}</td>
                 <td>{{ imagen.numDownloads }}</td>
+                <td>{{ imagen.password }}</td>
                 <td>
-                    <a href="{{ path('app_imagen_show', {'id': imagen.id}) }}">show</a>
-                    <a href="{{ path('app_imagen_edit', {'id': imagen.id}) }}">edit</a>
+                    <a href="{{ path('app_imagen_show', {'id': imagen.id}) }}">Ver</a>
+                    <a href="{{ path('app_imagen_edit', {'id': imagen.id}) }}">Editar</a>
                 </td>
             </tr>
         {% else %}
@@ -41,5 +42,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_imagen_new') }}">Create new</a>
+    <a href="{{ path('app_imagen_new') }}">Crear nuevo</a>
 {% endblock %}
