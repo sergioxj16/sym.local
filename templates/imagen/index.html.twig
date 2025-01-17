@@ -1,46 +1,47 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Imagen index{% endblock %}
+{% block title %}Imagen index
+{% endblock %}
 
 {% block principal %}
-    <h1>Imagen index</h1>
+	<h1>Imagen index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nombre</th>
-                <th>Descripcion</th>
-                <th>Categoria</th>
-                <th>NumVisualizaciones</th>
-                <th>NumLikes</th>
-                <th>NumDownloads</th>
-                <th>Contraseña</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for imagen in imagens %}
-            <tr>
-                <td>{{ imagen.id }}</td>
-                <td>{{ imagen.nombre }}</td>
-                <td>{{ imagen.descripcion }}</td>
-                <td>{{ imagen.categoria }}</td>
-                <td>{{ imagen.numVisualizaciones }}</td>
-                <td>{{ imagen.numLikes }}</td>
-                <td>{{ imagen.numDownloads }}</td>
-                <td>{{ imagen.password }}</td>
-                <td>
-                    <a href="{{ path('app_imagen_show', {'id': imagen.id}) }}">Ver</a>
-                    <a href="{{ path('app_imagen_edit', {'id': imagen.id}) }}">Editar</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="8">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Imagen</th>
+				<th>Descripcion</th>
+				<th>Categoria</th>
+				<th>NumVisualizaciones</th>
+				<th>NumLikes</th>
+				<th>NumDownloads</th>
+				<th>Contraseña</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for imagen in imagens %}
+				<tr>
+					<td>{{ imagen.id }}</td>
+					<td><img src="{{ asset(imagen.getUrlImagenes()) }}" alt="{{ imagen.nombre }}" width="100px"></td>
+					<td>{{ imagen.descripcion }}</td>
+					<td>{{ imagen.categoria }}</td>
+					<td>{{ imagen.numVisualizaciones }}</td>
+					<td>{{ imagen.numLikes }}</td>
+					<td>{{ imagen.numDownloads }}</td>
+					<td>{{ imagen.password }}</td>
+					<td>
+						<a href="{{ path('app_imagen_show', {'id': imagen.id}) }}" class="btn">Ver</a>
+						<a href="{{ path('app_imagen_edit', {'id': imagen.id}) }}" class="btn">Editar</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="8">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 
-    <a href="{{ path('app_imagen_new') }}">Crear nuevo</a>
+	<a href="{{ path('app_imagen_new') }}" class="btn">Crear nuevo</a>
 {% endblock %}

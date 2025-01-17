@@ -4,14 +4,16 @@ namespace App\Entity;
 
 use App\Repository\ImagenRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 #[ORM\Entity(repositoryClass: ImagenRepository::class)]
 class Imagen
 {
-    const RUTA_IMAGENES_PORTFOLIO = '/images/index/portfolio/';
-    const RUTA_IMAGENES_GALERIA = '/images/index/gallery/';
-    const RUTA_IMAGENES_CLIENTES = '/images/clients/';
-    const RUTA_IMAGENES_SUBIDAS = '/images/imagenes_subidas/';
+    const RUTA_IMAGENES_PORTFOLIO = 'images/index/portfolio/';
+    const RUTA_IMAGENES_GALERIA = 'images/galeria';
+    const RUTA_IMAGENES_CLIENTES = 'images/clients/';
+    const RUTA_IMAGENES_SUBIDAS = 'images/galeria/';
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -19,7 +21,12 @@ class Imagen
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
+    #[Assert\File(
+        mimeTypes: ['image/jpeg', 'image/png'],
+        mimeTypesMessage: 'Solamente se permiten archivos JPEG o PNG.'
+    )]
     private ?string $nombre = null;
+
 
     #[ORM\Column(length: 255)]
     private ?string $descripcion = null;
@@ -146,8 +153,26 @@ class Imagen
         return $this;
     }
 
-    public function getUrlPortfolio() { return self::RUTA_IMAGENES_PORTFOLIO . $this->getNombre(); }
-    public function getUrlGaleria() { return self::RUTA_IMAGENES_GALERIA . $this->getNombre(); }
-    public function getUrlClientes() { return self::RUTA_IMAGENES_CLIENTES . $this->getNombre(); }
-    public function getUrlSubidas() { return self::RUTA_IMAGENES_SUBIDAS . $this->getNombre(); }
+    public function getUrlPortfolio()
+    {
+        return self::RUTA_IMAGENES_PORTFOLIO . $this->getNombre();
+    }
+    public function getUrlGaleria()
+    {
+        return self::RUTA_IMAGENES_GALERIA . $this->getNombre();
+    }
+    public function getUrlClientes()
+    {
+        return self::RUTA_IMAGENES_CLIENTES . $this->getNombre();
+    }
+    public function getUrlSubidas()
+    {
+        return self::RUTA_IMAGENES_SUBIDAS . $this->getNombre();
+    }
+
+    public function getUrlImagenes(): string
+    {
+        return $this->getUrlSubidas();
+    }
+
 }

@@ -30,15 +30,35 @@ final class ImagenController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            /** @var \Symfony\Component\HttpFoundation\File\UploadedFile $file */
+            $file = $form['nombre']->getData();
+            
+            // Verificamos si se subió un archivo
+            if ($file) {
+                // Generamos un nombre único para la imagen
+                $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+
+                // Movemos el archivo a la carpeta adecuada
+                $file->move(
+                    $this->getParameter('images_directory_subidas'), // Ruta donde se guardará la imagen
+                    $fileName
+                );
+
+                // Actualizamos el campo 'nombre' en la entidad Imagen con el nuevo nombre del archivo
+                $imagen->setNombre($fileName);
+            }
+
+            // Persistimos la nueva imagen en la base de datos
             $entityManager->persist($imagen);
             $entityManager->flush();
 
+            // Redirigimos a la lista de imágenes
             return $this->redirectToRoute('app_imagen_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('imagen/new.html.twig', [
             'imagen' => $imagen,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -64,7 +84,7 @@ final class ImagenController extends AbstractController
 
         return $this->render('imagen/edit.html.twig', [
             'imagen' => $imagen,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 

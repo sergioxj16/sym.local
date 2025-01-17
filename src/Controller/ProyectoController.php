@@ -11,38 +11,38 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ProyectoController extends AbstractController
 {
-    // #[Route('/', name: 'sym_index')]
-    // public function index()
-    // {
-    //     $imagenesHome = [];
-    //     for ($i = 1; $i <= 12; $i++) {
-    //         $imagen = new Imagen();
-    //         $imagen->setNombre("$i.jpg")
-    //             ->setDescripcion("descripción imagen $i")
-    //             ->setCategoria(1)
-    //             ->setNumVisualizaciones(rand(1, 500))
-    //             ->setNumLikes(rand(1, 700))
-    //             ->setNumDownloads(rand(100, 200));
-
-    //         $imagenesHome[] = $imagen;
-    //     }
-    //     $idCategoria = 1;
-    //     return $this->render('index.view.html.twig', [
-    //         'imagenes' => $imagenesHome,
-    //         'idCategoria' => $idCategoria
-    //     ]);
-    // }
-
     #[Route('/', name: 'sym_index')]
-    public function index(ManagerRegistry $doctrine): Response
+    public function index()
     {
-        $imagenesHome = $doctrine->getRepository(Imagen::class)->findAll();
+        $imagenesHome = [];
+        for ($i = 1; $i <= 12; $i++) {
+            $imagen = new Imagen();
+            $imagen->setNombre("$i.jpg")
+                ->setDescripcion("descripción imagen $i")
+                ->setCategoria(1)
+                ->setNumVisualizaciones(rand(1, 500))
+                ->setNumLikes(rand(1, 700))
+                ->setNumDownloads(rand(100, 200));
+
+            $imagenesHome[] = $imagen;
+        }
         $idCategoria = 1;
         return $this->render('index.view.html.twig', [
             'imagenes' => $imagenesHome,
             'idCategoria' => $idCategoria
         ]);
     }
+
+    // #[Route('/', name: 'sym_index')]
+    // public function index(ManagerRegistry $doctrine): Response
+    // {
+    //     $imagenesHome = $doctrine->getRepository(Imagen::class)->findAll();
+    //     $idCategoria = 1;
+    //     return $this->render('index.view.html.twig', [
+    //         'imagenes' => $imagenesHome,
+    //         'idCategoria' => $idCategoria
+    //     ]);
+    // }
 
     #[Route('/about', name: 'sym_about')]
     public function about()
